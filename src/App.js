@@ -9,29 +9,20 @@ const messages = [
 export default function App() {
 
   const [step, setStep] = useState(1);
-  //const [test, setTest] = useState({name: "Leandro"});
 
-  // Creating a new Piece of State
   const[isOpen, setIsOpen] = useState(true);
 
   function handlePrevious (){
-    if(step > 1) setStep(step - 1);
-    //setTest({name: "Leandro"});
+    if(step > 1) setStep((s) => s - 1);
   }
 
   function handleNext (){
-    
-    if(step < 3) setStep(step + 1); 
-    // BAD PRACTICE to override a var because States always must to be trated as immutable
-    // test.name = "Junior"
-
-    // GOOD PRACTICE
-    //setTest({name: "Junior"}); 
+    if(step < 3) setStep((s => s + 1)); 
   }
 
 
   return <>
-    <button className="close" onClick={()=> setIsOpen(!isOpen)}>&times;</button>
+    <button className="close" onClick={()=> setIsOpen((i) => !i /* Callback function is a more safe to update state*/)}>&times;</button>
     { isOpen && (
       <div className="steps">
       <div className="numbers">
